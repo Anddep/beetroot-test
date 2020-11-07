@@ -1,2 +1,2 @@
 # beetroot-test
-repo for test task
+Beetroot test task - WP theme Hotel
