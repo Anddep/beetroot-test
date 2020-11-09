@@ -1,0 +1,105 @@
+header {
+  height: 80px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 48px rgba(0, 0, 0, 0.06);
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .logo-link {
+    display: block;
+    text-decoration: none;
+
+    img {
+      width: 118px;
+      height: 39px;
+    }
+  }
+
+  .menu-wrap {
+    display: flex;
+    align-items: center;
+
+    .header-menu {
+      margin-right: 34px;
+      ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        list-style: none;
+
+        li {
+          &:not(:last-child) {
+            margin-right: 30px;
+          }
+
+          a {
+            font-size: 16px;
+            line-height: 22px;
+            letter-spacing: 1.2px;
+            color: #77838F;
+
+            &.hover {
+              transition: .5s;
+              opacity: 1;
+            }
+          }
+          &.has-children {
+            a {
+              padding-right: 19px;
+              position: relative;
+              &:after {
+                border-style: solid;
+                border-width: 1px 1px 0 0;
+                content: '';
+                display: inline-block;
+                height: 6px;
+                width: 6px;
+                right: -11px;
+                position: relative;
+                vertical-align: middle;
+                transform: rotate(135deg);
+                top: -3px;
+
+              }
+            }
+          }
+        }
+      }
+      &.hover {
+        li {
+          a {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
+    .buy-link{
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 19px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: #FFFFFF;
+      width: 98px;
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #F45757;
+      border-radius: 4px;
+      transition: .5s;
+      &:hover{
+        background-color: #FB7D7D;
+        transition: .5s;
+      }
+    }
+  }
+
+}
+

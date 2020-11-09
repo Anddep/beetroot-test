@@ -3,16 +3,200 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, iniEveryonetial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
-    <link rel='stylesheet' href='css/style.css'>
+    <title>Hotel - archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='./assets/dist/style.css'>
 </head>
 <body>
-<header>
 
+<header>
+    <div class="container">
+        <a href="/" class="logo-link">
+            <img src="./assets/img/logo-dark.svg" alt="Logo image" />
+        </a>
+        <div class="menu-wrap">
+            <nav class='header-menu' role='navigation'>
+                <ul>
+                    <li class="has-children"><a href="">Home</a></li>
+                    <li class="has-children"><a href="">Pages</a></li>
+                    <li class="has-children"><a href="">Blog</a></li>
+                    <li class="has-children"><a href="">Demos</a></li>
+                    <li class="has-children"><a href="">Docs</a></li>
+                </ul>
+            </nav>
+            <a href="" class="buy-link">Buy Now</a>
+        </div>
+    </div>
 </header>
 
 <main>
+    <section class="search-form-section">
+        <div class="container">
+            <form class="search-form">
+                <div class="input-wrap">
+                    <label for="where-field">WHERE</label>
+                    <input id="where-field" class="search-form-input" type="text" placeholder="Anywhere">
+                </div>
+                <div class="input-wrap date-wrap">
+                    <label for="check-in-field">CHECK-IN</label>
+                    <input id="check-in-field" class="search-form-input" type="date" placeholder="dd-mm-yyyy">
+                </div>
+                <div class="input-wrap date-wrap">
+                    <label for="check-out-field">CHECK-OUT</label>
+                    <input id="check-out-field" class="search-form-input" type="date" placeholder="dd-mm-yyyy" value=""
+                           min="2020-01-01" max="2030-12-31">
+                </div>
+                <div class="input-wrap guests-wrap">
+                    <label for="guests-field">GUESTS</label>
+                    <select id="guests-field" class="search-form-input">
+                        <option value="" disabled selected>GUESTS</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="input-wrap btn-wrap">
+                    <button id="search-btn" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
+    <section class="hotels">
+        <div class="container">
+            <div class="hotels-head">
+                <h2>300+ Places to Stay</h2>
+                <div class="sort-wrap">
+                    <div class="sort-count">
+                        <select id="sort-count-select">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value=302">30</option>
+                        </select>
+                        <div class="sort-count-text">Showing <span id="current-count">1-10</span> of <span id="add-count">178</span></div>
+                    </div>
+                    <div class="sort-view-wrap">
+                        <select id="sort-filter-select">
+                            <option value="recent" selected>Most recent</option>
+                            <option value="new">New</option>
+                            <option value="old">Old</option>
+                        </select>
+                        <button id="grid-view" class="sort-view-btn active"><i class="fa fa-th-large" aria-hidden="true"></i></button>
+                        <button id="list-wrap" class="sort-view-btn"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotels-content">
+                <div class="hotel-list">
+                    <div class="hotel-item">
+                        <div class="img-wrap">
+                            <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20019951-dd92fb6602258fd389da284b6fddfe6c.jpeg?tr=q-40,c-at_max,w-740,h-500&_src=imagekit" />
+                            <div class="price">$590 / Night</div>
+                        </div>
+                        <div class="info-wrap">
+                            <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne Victoria, AU</a>
+                            <div class="hotel-attributes">
+                                <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-bath" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-television" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-square-o" aria-hidden="true"></i><span>1,428 sqft</span></div>
+                            </div>
+                            <div class="author-wrap">
+                                <img class="author-img" src="https://bipbap.ru/wp-content/uploads/2020/01/garry-potter-srisovki_13.jpg" />
+                                <div class="author-info-wrap">
+                                    <div class="name">Lance Bogrol</div>
+                                    <div class="date">Listed on Jan 01, 2020</div>
+                                </div>
+                            </div>
+                            <div class="action">
+                                <a href="" class="save-btn"><i class="fa fa-star" aria-hidden="true"></i> Save</a>
+                                <a href="" class="details-btn">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="img-wrap">
+                            <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20019951-dd92fb6602258fd389da284b6fddfe6c.jpeg?tr=q-40,c-at_max,w-740,h-500&_src=imagekit" />
+                            <div class="price">$590 / Night</div>
+                        </div>
+                        <div class="info-wrap">
+                            <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne Victoria, AU</a>
+                            <div class="hotel-attributes">
+                                <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-bath" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-television" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-square-o" aria-hidden="true"></i><span>1,428 sqft</span></div>
+                            </div>
+                            <div class="author-wrap">
+                                <img class="author-img" src="https://bipbap.ru/wp-content/uploads/2020/01/garry-potter-srisovki_13.jpg" />
+                                <div class="author-info-wrap">
+                                    <div class="name">Lance Bogrol</div>
+                                    <div class="date">Listed on Jan 01, 2020</div>
+                                </div>
+                            </div>
+                            <div class="action">
+                                <a href="" class="save-btn"><i class="fa fa-star" aria-hidden="true"></i> Save</a>
+                                <a href="" class="details-btn">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="img-wrap">
+                            <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20019951-dd92fb6602258fd389da284b6fddfe6c.jpeg?tr=q-40,c-at_max,w-740,h-500&_src=imagekit" />
+                            <div class="price">$590 / Night</div>
+                        </div>
+                        <div class="info-wrap">
+                            <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne Victoria, AU</a>
+                            <div class="hotel-attributes">
+                                <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-bath" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-television" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-square-o" aria-hidden="true"></i><span>1,428 sqft</span></div>
+                            </div>
+                            <div class="author-wrap">
+                                <img class="author-img" src="https://bipbap.ru/wp-content/uploads/2020/01/garry-potter-srisovki_13.jpg" />
+                                <div class="author-info-wrap">
+                                    <div class="name">Lance Bogrol</div>
+                                    <div class="date">Listed on Jan 01, 2020</div>
+                                </div>
+                            </div>
+                            <div class="action">
+                                <a href="" class="save-btn"><i class="fa fa-star" aria-hidden="true"></i> Save</a>
+                                <a href="" class="details-btn">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-item">
+                        <div class="img-wrap">
+                            <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20019951-dd92fb6602258fd389da284b6fddfe6c.jpeg?tr=q-40,c-at_max,w-740,h-500&_src=imagekit" />
+                            <div class="price">$590 / Night</div>
+                        </div>
+                        <div class="info-wrap">
+                            <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne Victoria, AU</a>
+                            <div class="hotel-attributes">
+                                <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-bath" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-television" aria-hidden="true"></i><span>1</span></div>
+                                <div class="attribute"><i class="fa fa-square-o" aria-hidden="true"></i><span>1,428 sqft</span></div>
+                            </div>
+                            <div class="author-wrap">
+                                <img class="author-img" src="https://bipbap.ru/wp-content/uploads/2020/01/garry-potter-srisovki_13.jpg" />
+                                <div class="author-info-wrap">
+                                    <div class="name">Lance Bogrol</div>
+                                    <div class="date">Listed on Jan 01, 2020</div>
+                                </div>
+                            </div>
+                            <div class="action">
+                                <a href="" class="save-btn"><i class="fa fa-star" aria-hidden="true"></i> Save</a>
+                                <a href="" class="details-btn">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-"></div>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -20,81 +204,14 @@
 </main>
 
 <footer>
-    <div class="container">
-        <div class="footer-wrap">
-            <div class="footer-logo-wrap">
-                <a href="https://pointapp.org" class="footer-logo">
-                    <img src="https://pointapp.org/wp-content/uploads/2019/12/point-logo.svg">
-                </a>
-                <div class="download-platform-wrap">
-                    <a href="https://apps.apple.com/us/app/point-volunteer-in-columbus/id1173737657?ign-mpt=uo%3D4"
-                       target="_blank">
-                        <img src="https://pointapp.org/wp-content/themes/pointapp/assets/img/app-store.png"
-                             alt="Point in Apple Store">
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=org.pointapp.point" target="_blank">
-                        <img src="https://pointapp.org/wp-content/themes/pointapp/assets/img/google-play.png"
-                             alt="Point in Google Play">
-                    </a>
-                </div>
-                <a href=/" target="_blank" class="organization-login-link">
-                    Organization login <img
-                        src="https://pointapp.org/wp-content/themes/pointapp/assets/icon/arrow-right-oragne.svg">
-                </a>
-            </div>
-            <div class="footer-menu-wrap">
-                <div class="footer-menu-item-wrap">
-                    <h3 class="footer-menu-heading">POINT for...</h3>
-                    <ul class="footer-menu-item">
-                        <li class="menu-item"><a href="">Everyone</a></li>
-                        <li class="menu-item"><a href="">Nonprofits</a></li>
-                        <li class="menu-item"><a href="">Schools</a></li>
-                    </ul>
-                </div>
-                <div class="footer-menu-item-wrap">
-                    <h3 class="footer-menu-heading">Team</h3>
-                    <ul class="footer-menu-item">
-                        <li class="menu-item"><a href="">Schools</a></li>
-                    </ul>
-                </div>
-                <div class="footer-menu-item-wrap">
-                    <h3 class="footer-menu-heading">Support</h3>
-                    <ul class="footer-menu-item">
-                        <li class="menu-item"><a href="">Privacy</a></li>
-                        <li class="menu-item"><a href="">Terms</a></li>
-                        <li class="menu-item"><a href="">Community Guidelines</a></li>
-                    </ul>
-                </div>
-                <div class="footer-menu-item-wrap">
-                    <h3 class="footer-menu-heading">Community</h3>
-                    <ul class="footer-menu-item">
-                        <li class="menu-item"><a href="">News & Press</a></li>
-                        <li class="menu-item"><a href="">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="container">
-        <div class="copyright-social-wrap">
-            <div class="copyright">
-                © POINT 2020. All Rights Reserved.
-            </div>
-            <div class="social">
-                <a href="" target="_blank" class="footer-social-icon"><img src="./img/twitter.svg" /> </a>
-                <a href="" target="_blank" class="footer-social-icon"><img src="./img/instagram.svg" /> </a>
-                <a href="" target="_blank" class="footer-social-icon"><img src="./img/facebook.svg" /> </a>
-                <a href="" class="footer-social-icon"><img src="./img/envelope.svg" /> </a>
-            </div>
-        </div>
-    </div>
+
 
 </footer>
 
 
 
 <script src="https://use.fontawesome.com/d3fd47599b.js"></script>
+<script src="./assets/dist/main.bundle.js"></script>
 <script>
 
 
