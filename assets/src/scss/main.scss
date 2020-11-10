@@ -88,7 +88,8 @@
       &::-ms-expand {
         display: none;
       }
-      option{
+
+      option {
         color: #1E2022;
       }
     }
@@ -139,14 +140,16 @@
   }
 }
 
-.hotels{
+.hotels {
   padding: 80px 0 120px 0;
 }
-.hotels-head{
+
+.hotels-head {
   border-bottom: 1px solid #EEEEEE;
   padding-bottom: 39px;
   margin-bottom: 40px;
-  h2{
+
+  h2 {
     font-style: normal;
     font-weight: normal;
     font-size: 38px;
@@ -154,10 +157,12 @@
     letter-spacing: 1.425px;
     color: #1E2022;
   }
-  .sort-wrap{
+
+  .sort-wrap {
     display: flex;
     justify-content: space-between;
-    .sort-count{
+
+    .sort-count {
       display: flex;
       align-items: center;
       font-style: normal;
@@ -167,8 +172,9 @@
       letter-spacing: 0.494118px;
       color: #77838F;
     }
-    select{
-      border:0;
+
+    select {
+      border: 0;
       outline: none;
       width: auto;
       margin-right: 10px;
@@ -182,42 +188,52 @@
       color: #77838F;
       background: url('../../img/arrow.png') 90% / 12px no-repeat #F2F3F4;
     }
-    .sort-view-wrap{
+
+    .sort-view-wrap {
       display: flex;
-      select{
+
+      select {
         margin-right: 10px;
       }
-      button{
+
+      button {
         outline: none;
-        border:0;
+        border: 0;
         background: #F2F3F4;
         border: 1px solid #E7EAF3;
         box-sizing: border-box;
         border-radius: 4px;
         transition: .3s;
-        &:first-of-type{
+
+        &:first-of-type {
           border-radius: 4px 0px 0px 4px;
           border-right: 0;
         }
-        &:last-of-type{
+
+        &:last-of-type {
           border-radius: 0px 4px 4px 0px;
           border-left: 0;
         }
-        i{
+
+        i {
           font-size: 14px;
         }
-        &:hover{
+
+        &:hover {
           cursor: pointer;
           background-color: #F45757;
           transition: .3s;
-          i{
-            color:white;
+
+          i {
+            color: white;
           }
         }
-        &.active{
+
+        &.active {
           background-color: #F45757;
-          i{
-            color:white;
+
+          i {
+            color: white;
           }
         }
       }
@@ -226,28 +242,37 @@
   }
 }
 
-.hotels-content{
+.hotels-content {
   display: flex;
   justify-content: space-between;
 }
-.hotel-list{
+
+.hotel-list-wrap {
   width: calc(65% - 15px);
+}
+
+.hotel-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 60px;
 }
-.hotel-item{
+
+.hotel-item {
   width: calc(50% - 15px);
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
-  .img-wrap{
+
+  .img-wrap {
     width: 100%;
     position: relative;
-    img{
+
+    img {
       width: 100%;
     }
-    .price{
+
+    .price {
       position: absolute;
       bottom: 10px;
       left: 50%;
@@ -262,9 +287,11 @@
       color: #FFFFFF
     }
   }
-  .info-wrap{
+
+  .info-wrap {
     padding: 25px;
-    .location{
+
+    .location {
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
@@ -273,85 +300,100 @@
       color: #F45757;
       text-decoration: none;
       margin-bottom: 10px;
-      i{
+
+      i {
         margin-right: 5px;
       }
     }
-    .hotel-attributes{
+
+    .hotel-attributes {
       display: flex;
       margin-bottom: 15px;
-      .attribute{
+
+      .attribute {
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
         line-height: 26px;
         letter-spacing: 0.494118px;
         color: #1E2022;
-        i{
+
+        i {
           font-size: 14px;
           line-height: 26px;
           color: #77838F;
           margin-right: 6px;
         }
-        &:not(:last-child){
+
+        &:not(:last-child) {
           margin-right: 20px;
         }
       }
     }
-    .author-wrap{
+
+    .author-wrap {
       padding: 10px 0;
       border-bottom: 1px solid #EEEEEE;
       border-top: 1px solid #EEEEEE;
       display: flex;
       align-items: center;
       margin-bottom: 15px;
-      .author-img{
+
+      .author-img {
         margin-right: 15px;
         width: 60px;
         height: 60px;
         border-radius: 50%;
         object-fit: cover;
       }
-      .author-info-wrap{
+
+      .author-info-wrap {
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
         line-height: 26px;
         letter-spacing: 0.494118px;
-        .name{
+
+        .name {
           color: #1E2022;
         }
-        .date{
+
+        .date {
           color: #77838F;
         }
       }
     }
-    .action{
+
+    .action {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      a.save-btn{
+
+      a.save-btn {
         font-weight: 600;
         font-size: 15px;
         line-height: 20px;
         text-align: center;
         letter-spacing: 1.07143px;
         color: #77838F;
-        i{
+
+        i {
           font-size: 15px;
           line-height: 17px;
           color: #77838F;
           margin-right: 6px;
           transition: .5s;
         }
-        &:hover{
-          i{
-            color:#FFCA2C;
+
+        &:hover {
+          i {
+            color: #FFCA2C;
             transition: .5s;
           }
         }
       }
-      a.details-btn{
+
+      a.details-btn {
         font-style: normal;
         font-weight: 600;
         font-size: 15px;
@@ -363,7 +405,8 @@
         padding: 15px 48px;
         background-color: #FFEEEE;
         border-radius: 4px;
-        &:hover{
+
+        &:hover {
           transform: 0.5s;
           background-color: #FFD4D4;
         }
@@ -371,18 +414,59 @@
     }
   }
 }
-.hotel-filter{
+
+.pagination-wrap {
+  display: flex;
+  justify-content: center;
+
+  ul {
+    list-style: none;
+    display: flex;
+
+    li {
+      a {
+        padding: 11px 13px;
+        transition: .3s;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 14px;
+        text-align: center;
+        color: #77838F;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: #F45757;
+          transition: .3s;
+          color: #fff;
+        }
+      }
+
+      &.active {
+        a {
+          background-color: #F45757;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.hotel-filter {
   width: calc(35% - 65px);
   box-shadow: 0px 2px 48px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   padding: 25px;
-  .filter-group{
-    &:not(:last-child){
+  height: max-content;
+
+  .filter-group {
+    &:not(:last-child) {
       padding-bottom: 20px;
       margin-bottom: 20px;
       border-bottom: 1px solid #EEEEEE;
     }
-    h3{
+
+    h3 {
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -391,15 +475,18 @@
       color: #1E2022;
       margin: 0 0 15px 0;
     }
-    .filter-items{
-      &.two-colunm{
+
+    .filter-items {
+      &.two-colunm {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        .container-checkbox{
+
+        .container-checkbox {
           width: calc(50% - 30px);
         }
       }
+
       .container-checkbox {
         width: 100%;
         display: block;
@@ -418,7 +505,8 @@
         user-select: none;
         transition: .3s;
       }
-      .container-checkbox{
+
+      .container-checkbox {
         input {
           position: absolute;
           opacity: 0;
@@ -427,6 +515,7 @@
           width: 0;
         }
       }
+
       .checkmark {
         position: absolute;
         top: 2px;
@@ -440,25 +529,25 @@
         transition: .3s;
       }
 
-      .container-checkbox{
-        &:hover{
-          input ~ .checkmark{
+      .container-checkbox {
+        &:hover {
+          input ~ .checkmark {
             background-color: #D5DAE2;
             opacity: .5;
           }
         }
       }
 
-      .container-checkbox{
-        input{
-          &:checked ~ .checkmark{
+      .container-checkbox {
+        input {
+          &:checked ~ .checkmark {
             background-color: transparent;
             transition: .3s;
           }
         }
       }
 
-      .checkmark{
+      .checkmark {
         &:after {
           content: "";
           position: absolute;
@@ -467,8 +556,8 @@
       }
 
       .container-checkbox {
-        input{
-          &:checked ~ .checkmark{
+        input {
+          &:checked ~ .checkmark {
             &:after {
               display: block;
             }
@@ -476,8 +565,8 @@
         }
       }
 
-      .container-checkbox{
-        .checkmark{
+      .container-checkbox {
+        .checkmark {
           &:after {
             left: 6px;
             top: 3px;
@@ -493,6 +582,85 @@
       }
     }
   }
+}
 
+.download-app {
+  padding: 130px 0;
+  background-color: #F7FAFD;
+  display: flex;
+  justify-content: center;
+
+  h3 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: 1.2px;
+    color: #1E2022;
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    max-width: 457px;
+    font-size: 17px;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: #77838F;
+    margin-bottom: 40px;
+  }
+
+  .app-btn-wrap {
+    display: flex;
+    justify-content: center;
+
+    .app-btn {
+      background-color: #F45757;
+      border-radius: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 170px;
+      height: 54px;
+      transition: .2s;
+      
+      &:hover{
+        background-color: #FB7878;
+        transition: .2s;
+      }
+
+      &:first-child {
+        margin-right: 20px;
+      }
+
+      i {
+        font-size: 24px;
+        color: #fff;
+        margin-right: 12px;
+      }
+      .app-btn-text-wra{
+        display: flex;
+        flex-direction: column;
+        font-style: normal;
+        font-weight: normal;
+        color: #fff;
+        span{
+          &:first-child{
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.423529px;
+            color: #FFFFFF
+          }
+          &:last-child{
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.6px;
+          }
+        }
+      }
+
+    }
+  }
 
 }
