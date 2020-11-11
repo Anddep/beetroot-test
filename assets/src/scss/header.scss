@@ -99,6 +99,16 @@ header {
         transition: .5s;
       }
     }
+    /*mobile*/
+    .open-menu{
+      display: none;
+    }
+    .close-menu{
+      display: none;
+      right: -100px;
+      top: -100px;
+      position: absolute;
+    }
   }
 
 }
