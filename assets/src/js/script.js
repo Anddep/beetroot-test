@@ -29,4 +29,22 @@ $( document ).ready(function() {
         $(this).addClass('active');
     });
 
+    //open filter on mobile
+    $(".open-filter").click(function(){
+        $(this).toggleClass('open');
+        $(".hotel-filter").slideToggle({
+            duration: 'fast',
+            step: function() {
+                if ($(".hotel-filter").css('display') == 'block') {
+                    $(".hotel-filter").css('display', 'flex');
+                }
+            },
+            complete: function() {
+                if ($(".hotel-filter").css('display') == 'block') {
+                    $(".hotel-filter").css('display', 'flex');
+                }
+            }
+        });
+    });
+
 });
