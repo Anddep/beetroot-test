@@ -935,4 +935,54 @@
 
 .book-wrap{
   width: calc(35% - 15px);
+  padding: 25px;
+  .price{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 27px;
+    letter-spacing: 0.6px;
+    color: #1E2022;
+    strong{
+      font-weight: bold;
+    }
+  }
+  .rating{
+    display: flex;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #EEEEEE;
+    .stars{
+      margin-right: 10px;
+      i{
+        font-size: 12px;
+        line-height: 14px;
+        color: #FF8500;
+        &:not(:last-child){
+          margin-right: 3px;
+        }
+      }
+    }
+    .price-num{
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 26px;
+      letter-spacing: 0.494118px;
+      color: #1E2022;
+      margin-right: 5px;
+    }
+    .reviews-num{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 26px;
+      letter-spacing: 0.494118px;
+      color: #77838F;
+    }
+  }
+}
+
+.book-form{
+
 }
