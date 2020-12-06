@@ -69,12 +69,13 @@
 
                                 <?php if ($loop->have_posts()) {
                                     while ($loop->have_posts()) {
-                                        $loop->the_post(); ?>
+                                        $loop->the_post();
+                                         ?>
 
                                         <div class="hotel-item">
                                             <a href="<?php the_permalink(); ?>" class="img-wrap">
-                                                <img src="https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20019951-dd92fb6602258fd389da284b6fddfe6c.jpeg?tr=q-40,c-at_max,w-740,h-500&_src=imagekit" />
-                                                <div class="price">$<?=get_field( "price" );?>/ Night</div>
+                                                <img src="<?=get_the_post_thumbnail_url( get_the_ID() ,'full' )?>" />
+                                                <div class="price">$<?=get_field( "price" );?> / Night</div>
                                             </a>
                                             <div class="info-wrap">
                                                 <a href="<?=get_field( 'location_link' );?>" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><?=get_field( "location_name" );?></a>

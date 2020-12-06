@@ -56,12 +56,7 @@ function create_property()
         )
     );
 }
-
-function add_author_support_to_posts() {
-   add_post_type_support( 'property', 'author' );
-}
-add_action( 'init', 'add_author_support_to_posts' );
-
+add_theme_support( 'post-thumbnails' );
 //custom tax
 add_action( 'init', 'create_property_city' );
 function create_property_city(){
