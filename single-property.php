@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, iniEveryonetial-scale=1, shrink-to-fit=no">
-    <title>Hotel - Single</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='./assets/dist/style.css'>
-</head>
-<body>
+<?php get_header(); ?>
 
-<header>
-    <div class="container">
-        <a href="/" class="logo-link">
-            <img src="./assets/img/logo-dark.svg" alt="Logo image" />
-        </a>
-        <div class="menu-wrap">
-            <nav class='header-menu' role='navigation'>
-                <ul>
-                    <li class="has-children"><a href="">Home</a></li>
-                    <li class="has-children"><a href="">Pages</a></li>
-                    <li class="has-children"><a href="">Blog</a></li>
-                    <li class="has-children"><a href="">Demos</a></li>
-                    <li class="has-children"><a href="">Docs</a></li>
-                </ul>
-                <a href="javascript:void(0);" class="close-menu">
-                    <img src="assets/img/close.svg" alt="Open mobile menu">
-                </a>
-            </nav>
-            <a href="" class="buy-link">Buy Now</a>
-            <a href="javascript:void(0);" class="open-menu">
-                <img src="assets/img/humburger.svg" alt="Open mobile menu">
-            </a>
-        </div>
-    </div>
-</header>
-
-<main>
-
-    <section class="image-grid">
+<section class="image-grid">
         <div class="grid-wrap">
             <img class="gallery-1" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" />
             <img class="gallery-2" src="https://cdn.pixabay.com/photo/2017/03/25/17/55/color-2174045__340.png" />
@@ -151,7 +114,7 @@
                                 <div class="reviews-item">
                                     <div class="name">Location</div>
                                     <div class="range">
-                                        <span style="width:150px"></span>
+                                        <span style="width:139px"></span>
                                     </div>
                                     <div class="rating">5.0</div>
                                 </div>
@@ -251,58 +214,4 @@
         </div>
     </section>
 
-</main>
-
-<footer>
-    <div class="container">
-        <div class="footer-wrap">
-            <div class="footer-info-wrap">
-                <img src="assets/img/logo-dark.svg" alt="logo image" />
-                <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper.</p>
-            </div>
-            <div class="footer-menu-wrap">
-                <div class="footer-menu-item">
-                    <h4>Helpful Links</h4>
-                    <ul class="">
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">Features</a></li>
-                        <li><a href="">FAQ’s</a></li>
-                        <li><a href="">Blog</a></li>
-                        <li><a href="">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-menu-item">
-                    <h4>Services</h4>
-                    <ul class="footer-menu-item">
-                        <li><a href="">Worldwide</a></li>
-                        <li><a href="">Scalable</a></li>
-                        <li><a href="">Modular</a></li>
-                        <li><a href="">Connectivity</a></li>
-                        <li><a href="">Corporate</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-contact-wrap">
-                <h4>Contact Us</h4>
-                <p class="address">455 West Orchard Street
-                    Kings Mountain, NC 28086</p>
-                <p class="phone">Phone: <a href="tel:2722117370">(272) 211-7370</a></p>
-                <p class="email">E-Mail: <a href="mailto:support@brand.com">support@brand.com</a></p>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2020 YourSite. All Rights Reserved.
-        </div>
-    </div>
-</footer>
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/d3fd47599b.js"></script>
-<script src="./assets/dist/main.bundle.js"></script>
-<script>
-
-
-</script>
-</body>
-</html>
+<?php get_footer(); ?>

@@ -1,5 +1,5 @@
 
-$( document ).ready(function() {
+jQuery( document ).ready(function($) {
 
     //hover menu
     $( ".header-menu ul li a" ).hover(
