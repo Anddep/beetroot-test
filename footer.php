@@ -42,11 +42,10 @@
         </div>
     </div>
 </footer>
+<script>
+let siteUrl = '<?=get_site_url();?>';
+</script>
 
 		<?php wp_footer(); ?>
-<script>
-
-
-</script>
 </body>
 </html>

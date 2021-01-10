@@ -21,6 +21,7 @@
                         <option value="" disabled selected>GUESTS</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                 </div>
                 <div class="input-wrap btn-wrap">
@@ -29,6 +30,7 @@
             </form>
         </div>
     </section>
+
 
     <section class="hotels">
         <div class="container">
@@ -58,6 +60,8 @@
             <div class="hotels-content">
                 <div class="hotel-list-wrap">
                     <div class="hotel-list ">
+
+
 
                                 <?php
 
@@ -101,7 +105,7 @@
                                                     <a href="" class="save-btn"><i class="fa fa-star" aria-hidden="true"></i> Save</a>
                                                     <a href="<?php the_permalink(); ?>" class="details-btn">Details</a>
                                                 </div>
-                                                <div class="description">Quisque eu elit id nulla faucibus dictum. Nulla eu diam lacinia, hendrerit nunc vitae, interdum metus.</div>
+                                                <div class="description"><?=get_field( "description" );?></div>
                                             </div>
                                         </div>
 
@@ -131,13 +135,13 @@
                              $amenities = get_terms([
                                  'taxonomy' => 'amenities',
                                  'hide_empty' => false,
-                                 'orderby' => id,
-                                 'order' => ASC
+                                 'orderby' => 'id',
+                                 'order' => 'ASC'
                              ]);
                              foreach( $amenities as $amenitie ){
                             ?>
                                     <label class="container-checkbox"><?=$amenitie->name?>
-                                        <input type="checkbox">
+                                        <input class="filter-checkbox" data-tax="<?=$amenitie->taxonomy?>" data-tax-slug="<?=$amenitie->slug?>"  type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
                              <?php } ?>
@@ -151,8 +155,8 @@
                              $extras = get_terms([
                                  'taxonomy' => 'extras',
                                  'hide_empty' => false,
-                                 'orderby' => id,
-                                 'order' => ASC
+                                 'orderby' => 'id',
+                                 'order' => 'ASC'
                              ]);
                              foreach( $extras as $extra ){
                             ?>
@@ -172,8 +176,8 @@
                              $accessibility = get_terms([
                                  'taxonomy' => 'accessibility',
                                  'hide_empty' => false,
-                                 'orderby' => id,
-                                 'order' => ASC
+                                 'orderby' => 'id',
+                                 'order' => 'ASC'
                              ]);
                              foreach( $accessibility as $accessibility_item ){
                             ?>
@@ -193,8 +197,8 @@
                              $bedroom_features = get_terms([
                                  'taxonomy' => 'bedroom-features',
                                  'hide_empty' => false,
-                                 'orderby' => id,
-                                 'order' => ASC
+                                 'orderby' => 'id',
+                                 'order' => 'ASC'
                              ]);
                              foreach( $bedroom_features as $bedroom_feature ){
                             ?>
@@ -214,8 +218,8 @@
                              $property_types = get_terms([
                                  'taxonomy' => 'property-type',
                                  'hide_empty' => false,
-                                 'orderby' => id,
-                                 'order' => ASC
+                                 'orderby' => 'id',
+                                 'order' => 'ASC'
                              ]);
                              foreach( $property_types as $property_type ){
                             ?>

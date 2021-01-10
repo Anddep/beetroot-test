@@ -210,4 +210,107 @@ function create_property_property_type(){
 	));
 }
 
+
+//api search form
+add_action('rest_api_init', function() {
+	register_rest_route('api/v1', 'property', [
+		'methods' => 'GET',
+		'callback' => 'property_form',
+		'permission_callback' => '__return_true'
+	]);
+
+});
+
+function property_form($request) {
+
+    $check_in = $request[ 'in' ] ? $request[ 'in' ] : date('Y-m-d');
+    $check_out = $request[ 'out' ] ? $request[ 'out' ] : date('Y-m-d', strtotime('+1 day'));
+    $where = $request['where'] ? $request['where'] : '';
+    $guest = $request[ 'guest' ] ? $request[ 'guest' ] : 1;
+
+	$args = [
+		'posts_per_page' => -1,
+		'post_type' => 'property',
+		's' => $where,
+        'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key'       => 'start_available',
+                            'value'     => $check_in,
+                            'compare'   => '<=',
+                            'type'      => 'DATE'
+                        ),
+                        array(
+                            'key'       => 'end_available',
+                            'value'     => $check_out,
+                            'compare'   => '>=',
+                            'type'      => 'DATE'
+                        ),
+                        array(
+                            'key'       => 'max_capability',
+                            'value'     => $guest,
+                            'compare'   => '>=',
+                        )
+                    ),
+
+	];
+
+	if ($request[ 'amenities' ] ) {
+	    $amenities = $request[ 'amenities' ];
+	    $amenities = explode(',', $amenities);
+
+	    $args['tax_query'] = array(
+                            array(
+                                'taxonomy' => 'amenities',
+                                'field' => 'slug',
+                                'terms' => $amenities,
+                                'operator' => 'AND'
+                            )
+                        );
+	}
+
+
+	//var_dump($args);
+
+
+	$posts = get_posts($args);
+
+
+
+	foreach($posts as $post) {
+
+	$property_data[] = array(
+
+            'id' => $post->ID,
+              'title' => $post->post_title,
+              'description' => get_field( "description" , $post->ID ),
+              'link' =>  get_the_permalink(  $post->ID ),
+              'thumbnail' => get_the_post_thumbnail_url( $post->ID ,'full' ),
+              'price' => get_field( "price" , $post->ID ),
+              'location' => array(
+                   'link' => get_field( 'location_link',  $post->ID ),
+                   'name' => get_field( "location_name", $post->ID),
+              ),
+              'rooms' => array(
+                   'all' =>get_field( "rooms",  $post->ID ),
+                   'bedrooms' =>get_field( "вedrooms",  $post->ID ),
+                   'bathrooms' =>get_field( "bathrooms",  $post->ID ),
+                   'square' =>get_field( "square",  $post->ID ),
+              ),
+              'author' => array(
+                   'id' => $post->post_author,
+                   'name' =>  get_the_author_meta('user_firstname',$post->post_author).' '.get_the_author_meta('user_lastname',$post->post_author),
+                   'image' => get_field('profile_avatar', 'user_'. get_the_author_meta('ID',  $post->post_author)),
+              ),
+              'date' => get_the_time('M d, Y', $post->ID)
+        );
+	}
+
+	if ( empty( $property_data ) ) {
+        return false;
+      }
+
+	return $property_data;
+}
+//http://localhost:8888/beet-test/wp-json/api/v1/property?in=2020-12-23&out=2020-12-25&guest=2
 ?>
