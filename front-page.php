@@ -36,6 +36,17 @@
         <div class="container">
             <div class="hotels-head">
                 <h2>300+ Places to Stay</h2>
+
+                <?php
+                $args = array(
+                    'post_type' => 'property',
+                    'posts_per_page' => 2
+
+                );
+                $loop = new WP_Query($args);
+
+                $count_posts = $loop->found_posts; ?>
+
                 <div class="sort-wrap">
                     <div class="sort-count">
                         <select id="sort-count-select">
@@ -43,7 +54,7 @@
                             <option value="20">20</option>
                             <option value="302">30</option>
                         </select>
-                        <div class="sort-count-text">Showing <span id="current-count">1-10</span> of <span id="add-count">178</span></div>
+                        <div class="sort-count-text">Showing <span id="current-count">1-<?php echo $count_posts>2 ? 2 : $count_posts;?> </span> of <span id="add-count"><?=$count_posts?></span></div>
                     </div>
                     <div class="sort-view-wrap">
                         <select id="sort-filter-select">
@@ -60,16 +71,6 @@
             <div class="hotels-content">
                 <div class="hotel-list-wrap">
                     <div class="hotel-list ">
-
-
-
-                                <?php
-
-                                $args = array(
-                                    'post_type' => 'property',
-
-                                );
-                                $loop = new WP_Query($args); ?>
 
                                 <?php if ($loop->have_posts()) {
                                     while ($loop->have_posts()) {
@@ -112,20 +113,28 @@
                                     <?php }
                                 } ?>
 
-                            <?php  wp_reset_query(); ?>
-
-
                     </div>
-                    <div class="pagination-wrap">
-                        <ul class="pagination">
-                            <li class="active"><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                        </ul>
-                    </div>
+                    <?php
+                        if ($count_posts > 2) {
+                         $number_of_page = ceil($count_posts / 2); ?>
+                         <div class="pagination-wrap">
+                                <ul class="pagination">
+                                <?php
+                                for ($i = 1; $i <= $number_of_page; $i++) {
+                                    if ($i == 1){ ?>
+                                        <li class="active"><a href="#" data-page="<?=$i?>"><?=$i?></a></li>
+                                    <?php } else {  ?>
+                                     <li><a href="" data-page="<?=$i?>"><?=$i?></a></li>
+                                 <?php }
+                                } ?>
+                                </ul>
+                            </div>
+                       <?php  }
+                      ?>
+
                 </div>
+
+                <?php  wp_reset_query(); ?>
                 <div class="hotel-filter">
 
                     <div class="filter-group">
@@ -161,7 +170,7 @@
                              foreach( $extras as $extra ){
                             ?>
                                     <label class="container-checkbox"><?=$extra->name?>
-                                        <input type="checkbox">
+                                        <input class="filter-checkbox" type="checkbox" data-tax="<?=$extra->taxonomy?>" data-tax-slug="<?=$extra->slug?>">
                                         <span class="checkmark"></span>
                                     </label>
                              <?php } ?>
@@ -182,7 +191,7 @@
                              foreach( $accessibility as $accessibility_item ){
                             ?>
                                     <label class="container-checkbox"><?=$accessibility_item->name?>
-                                        <input type="checkbox">
+                                        <input class="filter-checkbox" type="checkbox" data-tax="<?=$accessibility_item->taxonomy?>" data-tax-slug="<?=$accessibility_item->slug?>">
                                         <span class="checkmark"></span>
                                     </label>
                              <?php } ?>
@@ -203,7 +212,7 @@
                              foreach( $bedroom_features as $bedroom_feature ){
                             ?>
                                     <label class="container-checkbox"><?=$bedroom_feature->name?>
-                                        <input type="checkbox">
+                                        <input class="filter-checkbox" type="checkbox" data-tax="<?=$bedroom_feature->taxonomy?>" data-tax-slug="<?=$bedroom_feature->slug?>">
                                         <span class="checkmark"></span>
                                     </label>
                              <?php } ?>
@@ -224,7 +233,7 @@
                              foreach( $property_types as $property_type ){
                             ?>
                                     <label class="container-checkbox"><?=$property_type->name?>
-                                        <input type="checkbox">
+                                        <input class="filter-checkbox" type="checkbox" data-tax="<?=$property_type->taxonomy?>" data-tax-slug="<?=$property_type->slug?>">
                                         <span class="checkmark"></span>
                                     </label>
                              <?php } ?>

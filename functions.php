@@ -227,9 +227,11 @@ function property_form($request) {
     $check_out = $request[ 'out' ] ? $request[ 'out' ] : date('Y-m-d', strtotime('+1 day'));
     $where = $request['where'] ? $request['where'] : '';
     $guest = $request[ 'guest' ] ? $request[ 'guest' ] : 1;
+    $paged = $request[ 'page' ] ? $request[ 'page' ] : 1;
 
 	$args = [
-		'posts_per_page' => -1,
+		'posts_per_page' => 2,
+		'paged' => $paged,
 		'post_type' => 'property',
 		's' => $where,
         'meta_query' => array(
@@ -269,46 +271,106 @@ function property_form($request) {
                         );
 	}
 
+	if ($request[ 'extras' ] ) {
+	    $extras = $request[ 'extras' ];
+	    $extras = explode(',', $extras);
 
-	//var_dump($args);
-
-
-	$posts = get_posts($args);
-
-
-
-	foreach($posts as $post) {
-
-	$property_data[] = array(
-
-            'id' => $post->ID,
-              'title' => $post->post_title,
-              'description' => get_field( "description" , $post->ID ),
-              'link' =>  get_the_permalink(  $post->ID ),
-              'thumbnail' => get_the_post_thumbnail_url( $post->ID ,'full' ),
-              'price' => get_field( "price" , $post->ID ),
-              'location' => array(
-                   'link' => get_field( 'location_link',  $post->ID ),
-                   'name' => get_field( "location_name", $post->ID),
-              ),
-              'rooms' => array(
-                   'all' =>get_field( "rooms",  $post->ID ),
-                   'bedrooms' =>get_field( "вedrooms",  $post->ID ),
-                   'bathrooms' =>get_field( "bathrooms",  $post->ID ),
-                   'square' =>get_field( "square",  $post->ID ),
-              ),
-              'author' => array(
-                   'id' => $post->post_author,
-                   'name' =>  get_the_author_meta('user_firstname',$post->post_author).' '.get_the_author_meta('user_lastname',$post->post_author),
-                   'image' => get_field('profile_avatar', 'user_'. get_the_author_meta('ID',  $post->post_author)),
-              ),
-              'date' => get_the_time('M d, Y', $post->ID)
-        );
+	    $args['tax_query'] = array(
+                            array(
+                                'taxonomy' => 'extras',
+                                'field' => 'slug',
+                                'terms' => $extras,
+                                'operator' => 'AND'
+                            )
+                        );
 	}
+
+
+	if ($request[ 'accessibility' ] ) {
+	    $accessibility = $accessibility[ 'accessibility' ];
+	    $accessibility = explode(',', $accessibility);
+
+	    $args['tax_query'] = array(
+                            array(
+                                'taxonomy' => 'accessibility',
+                                'field' => 'slug',
+                                'terms' => $accessibility,
+                                'operator' => 'AND'
+                            )
+                        );
+	}
+
+	if ($request[ 'bedroom' ] ) {
+	    $bedroom = $bedroom[ 'bedroom' ];
+	    $bedroom = explode(',', $bedroom);
+
+	    $args['tax_query'] = array(
+                            array(
+                                'taxonomy' => 'bedroom-features',
+                                'field' => 'slug',
+                                'terms' => $bedroom,
+                                'operator' => 'AND'
+                            )
+                        );
+	}
+
+
+	if ($request[ 'type' ] ) {
+	    $property_type = $request[ 'type' ];
+	    $property_type = explode(',', $property_type);
+
+	    $args['tax_query'] = array(
+                            array(
+                                'taxonomy' => 'property-type',
+                                'field' => 'slug',
+                                'terms' => $property_type,
+                                'operator' => 'AND'
+                            )
+                        );
+	}
+
+	//$posts = get_posts($args);
+	 $posts = new WP_Query($args);
+
+	//foreach($posts as $post) {
+
+	if ($posts->have_posts()) {
+	    while ($posts->have_posts()) {
+	        $posts->the_post();
+
+	$property_data['items'][] = array(
+
+                'id' => get_the_ID(),
+                  'title' => get_the_title(),
+                  'description' => get_field( "description" , get_the_ID() ),
+                  'link' =>  get_the_permalink( get_the_ID() ),
+                  'thumbnail' => get_the_post_thumbnail_url( get_the_ID() ,'full' ),
+                  'price' => get_field( "price" , get_the_ID() ),
+                  'location' => array(
+                       'link' => get_field( 'location_link', get_the_ID() ),
+                       'name' => get_field( "location_name",get_the_ID() ),
+                  ),
+                  'rooms' => array(
+                       'all' =>get_field( "rooms",  get_the_ID() ),
+                       'bedrooms' =>get_field( "вedrooms",  get_the_ID() ),
+                       'bathrooms' =>get_field( "bathrooms",  get_the_ID() ),
+                       'square' =>get_field( "square",  get_the_ID() ),
+                  ),
+                  'author' => array(
+                       'id' => get_the_author_meta('ID'),
+                       'name' =>  get_the_author_meta('user_firstname', get_the_author_meta('ID') ).' '.get_the_author_meta('user_lastname', get_the_author_meta('ID')),
+                       'image' => get_field('profile_avatar', 'user_'. get_the_author_meta('ID',  get_the_author_meta('ID') )),
+                  ),
+                  'date' => get_the_time('M d, Y', get_the_ID() )
+            );
+	    }
+	}
+	$property_data['total'] = $posts->found_posts;
 
 	if ( empty( $property_data ) ) {
         return false;
       }
+
 
 	return $property_data;
 }

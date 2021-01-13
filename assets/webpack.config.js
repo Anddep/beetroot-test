@@ -10,6 +10,11 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
 
+
+    },
+    optimization: {
+        // We no not want to minimize our code.
+        minimize: false
     },
 
     module: {

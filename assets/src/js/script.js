@@ -1,6 +1,9 @@
 
 jQuery( document ).ready(function($) {
 
+    //global var
+    let getUrl = getSearchformParametr();
+
     //hover menu
     $( ".header-menu ul li a" ).hover(
         function() {
@@ -47,7 +50,76 @@ jQuery( document ).ready(function($) {
         });
     });
 
+
+
     //search
+    $("#search-btn").click(function(e){
+        e.preventDefault();
+        getUrl = getSearchformParametr();
+        sendRequest(getUrl, true);
+    });
+    //change  filter
+    let filterParametrAmenities = [];
+    let filterParametrExtras = [];
+    let filterParametrAccessibility = [];
+    let filterParametrBedroom = [];
+    let filterParametrType  = [];
+    $(".filter-checkbox").change(function(e){
+        e.preventDefault();
+        if ($(this).attr("data-tax") === 'amenities'){
+            if (filterParametrAmenities.includes($(this).attr("data-tax-slug")) ) {
+                filterParametrAmenities = filterParametrAmenities.filter(e => e !== $(this).attr("data-tax-slug"));
+            } else {
+                filterParametrAmenities.push($(this).attr("data-tax-slug"));
+            }
+        } else if ($(this).attr("data-tax") === 'extras'){
+            if (filterParametrExtras.includes($(this).attr("data-tax-slug")) ) {
+                filterParametrExtras = filterParametrExtras.filter(e => e !== $(this).attr("data-tax-slug"));
+            } else {
+                filterParametrExtras.push($(this).attr("data-tax-slug"));
+            }
+        } else if ($(this).attr("data-tax") === 'accessibility'){
+            if (filterParametrAccessibility.includes($(this).attr("data-tax-slug")) ) {
+                filterParametrAccessibility = filterParametrAccessibility.filter(e => e !== $(this).attr("data-tax-slug"));
+            } else {
+                filterParametrAccessibility.push($(this).attr("data-tax-slug"));
+            }
+        } else if ($(this).attr("data-tax") === 'bedroom-features'){
+            if (filterParametrBedroom.includes($(this).attr("data-tax-slug")) ) {
+                filterParametrBedroom = filterParametrBedroom.filter(e => e !== $(this).attr("data-tax-slug"));
+            } else {
+                filterParametrBedroom.push($(this).attr("data-tax-slug"));
+            }
+        } else if ($(this).attr("data-tax") === 'property-type'){
+            if (filterParametrType.includes($(this).attr("data-tax-slug")) ) {
+                filterParametrType = filterParametrType.filter(e => e !== $(this).attr("data-tax-slug"));
+            } else {
+                filterParametrType.push($(this).attr("data-tax-slug"));
+            }
+        }
+
+
+        getUrl = getSearchformParametr() + '&amenities=' + filterParametrAmenities.join(",") + '&extras=' + filterParametrExtras.join(",") + '&accessibility=' + filterParametrAccessibility.join(",") + '&bedroom=' + filterParametrBedroom.join(",") + '&type=' + filterParametrType.join(",");
+        sendRequest(getUrl, true);
+
+
+    });
+
+    //pagination click
+    $(document).on('click', '.pagination li a', function (e) {
+        e.preventDefault();
+        $('.pagination li').removeClass('active');
+        $(e.target).parent().addClass('active');
+        let pageNo = $(e.target).text();
+        getUrl += '&page='+pageNo;
+        console.log(getUrl);
+        sendRequest(getUrl, false);
+
+
+    });
+
+
+
 
     function getSearchformParametr() {
         let where = $('#where-field').val();
@@ -59,7 +131,7 @@ jQuery( document ).ready(function($) {
 
     }
 
-    function sendRequest(url) {
+    function sendRequest(url, isPaginationGenerated) {
         console.log(url);
 
         $.ajax({
@@ -69,6 +141,9 @@ jQuery( document ).ready(function($) {
                 if (data) {
                     console.log(data);
                     generateItems(data);
+                    if (isPaginationGenerated){
+                        generatePagination(data.total)
+                    }
                 } else {
                     $('.hotel-list').empty();
                     $('.pagination-wrap').empty();
@@ -78,35 +153,9 @@ jQuery( document ).ready(function($) {
         });
     }
 
-    $("#search-btn").click(function(e){
-        e.preventDefault();
-        let getUrl = getSearchformParametr();
-        sendRequest(getUrl);
-    });
-    //change  filter
-    let filterParametrAmenities = [];
-    $(".filter-checkbox").change(function(e){
-        e.preventDefault();
-
-        if (filterParametrAmenities.includes($(this).attr("data-tax-slug")) ) {
-            filterParametrAmenities = filterParametrAmenities.filter(e => e !== $(this).attr("data-tax-slug"));
-        } else {
-            filterParametrAmenities.push($(this).attr("data-tax-slug"));
-        }
-
-        let getUrl = getSearchformParametr() + '&amenities=' + filterParametrAmenities.join(",");
-        sendRequest(getUrl);
-
-        console.log(filterParametrAmenities);
-
-
-    });
-
-
-
     function generateItems(data){
         $('.hotel-list').empty();
-        data.forEach((item) => {
+        data.items.forEach((item) => {
             item.thumbnail = item.thumbnail ? item.thumbnail : '';
             item.author.image = item.author.image ? item.author.image : '';
             $('.hotel-list').append(`
@@ -142,6 +191,19 @@ jQuery( document ).ready(function($) {
 
 
     }
+
+    function generatePagination(totalItems) {
+        let numberOfPage = Math.ceil(totalItems / 2);
+        $(".pagination").html('');
+        if (numberOfPage > 1) {
+            for (let i = 1; i <= numberOfPage; i++) {
+                $(".pagination").append(`<li><a  href="" data-page="` + i + `">` + i + `</a></li>`);
+            }
+            $(".pagination li:first-child").addClass('active');
+        }
+    }
+
+
 
 
 });
