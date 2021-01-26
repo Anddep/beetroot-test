@@ -18,10 +18,12 @@
                 <div class="input-wrap guests-wrap">
                     <label for="guests-field">GUESTS</label>
                     <select id="guests-field" class="search-form-input">
-                        <option value="" disabled selected>GUESTS</option>
+                        <option value="" selected>GUESTS</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="input-wrap btn-wrap">
@@ -50,17 +52,17 @@
                 <div class="sort-wrap">
                     <div class="sort-count">
                         <select id="sort-count-select">
-                            <option value="10" selected>10</option>
-                            <option value="20">20</option>
-                            <option value="302">30</option>
+                            <option value="2" selected>2</option>
+                            <option value="4" >4</option>
+                            <option value="5" >5</option>
                         </select>
-                        <div class="sort-count-text">Showing <span id="current-count">1-<?php echo $count_posts>2 ? 2 : $count_posts;?> </span> of <span id="add-count"><?=$count_posts?></span></div>
+                        <div class="sort-count-text">Showing <span id="current-count">1-<?php echo $count_posts>2 ? 2 : $count_posts;?> </span> of <span id="all-count"><?=$count_posts?></span></div>
                     </div>
                     <div class="sort-view-wrap">
                         <select id="sort-filter-select">
                             <option value="recent" selected>Most recent</option>
-                            <option value="new">New</option>
-                            <option value="old">Old</option>
+                            <option value="price">Price</option>
+                            <option value="flat">Flat Count</option>
                         </select>
                         <button id="grid-view" class="sort-view-btn active"><i class="fa fa-th-large" aria-hidden="true"></i></button>
                         <button id="list-view" class="sort-view-btn"><i class="fa fa-list-ul" aria-hidden="true"></i></button>

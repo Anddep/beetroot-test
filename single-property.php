@@ -17,7 +17,7 @@
             <div class="content-section-wrap">
                 <div class="content-wrap">
                     <div class="head-wrap">
-                        <h1>Panorama Apartment in Central Paris</h1>
+                        <h1><?=get_the_title();?></h1>
                         <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne Victoria, AU</a>
                         <div class="hotel-attributes">
                             <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span>1</span></div>
@@ -148,16 +148,16 @@
                         <div class="date-wrap">
                             <div class="input-wrap">
                                 <label for="check-in-field">CHECK-IN</label>
-                                <input id="check-in-field" class="book-form-input" type="date" placeholder="dd-mm-yyyy" min="2020-01-01" max="2030-12-31">
+                                <input id="check-in-field" name="check-in" class="book-form-input" type="date" placeholder="dd-mm-yyyy" min="2020-01-01" max="2030-12-31">
                             </div>
                             <div class="input-wrap">
                                 <label for="check-out-field">CHECK-OUT</label>
-                                <input id="check-out-field" class="book-form-input" type="date" placeholder="dd-mm-yyyy" value="" min="2020-01-01" max="2030-12-31">
+                                <input id="check-out-field" name="check-out" class="book-form-input" type="date" placeholder="dd-mm-yyyy" value="" min="2020-01-01" max="2030-12-31">
                             </div>
                         </div>
                         <div class="input-wrap guests-wrap">
                             <label for="guests-field">GUESTS</label>
-                            <select id="guests-field" class="book-form-input">
+                            <select id="guests-field" name="guests" class="book-form-input">
                                 <option value="" disabled selected>GUESTS</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -177,7 +177,7 @@
                                 <div class="price">$560</div>
                             </div>
                         </div>
-                        <button type="submit">Reserve</button>
+                        <button id="book-form-submit" type="submit">Reserve</button>
                     </form>
                     <div class="after-info">
                         <p>You won’t be charged yet</p>

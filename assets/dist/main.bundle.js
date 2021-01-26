@@ -9,7 +9,23 @@
 
 jQuery(document).ready(function ($) {
   //global var
-  var getUrl = getSearchformParametr(); //hover menu
+  var API_PATH = siteUrl + '/wp-json/api/v1/property?';
+  var getUrl;
+  var objParameterUrl = {
+    page: null,
+    posts_per_page: null,
+    order: 'date',
+    where: '',
+    "in": '',
+    out: '',
+    guest: '',
+    amenities: '',
+    extras: '',
+    accessibility: '',
+    bedroom: '',
+    type: ''
+  };
+  getSearchFormParametr(); //hover menu
 
   $(".header-menu ul li a").hover(function () {
     $(this).addClass("hover");
@@ -50,19 +66,33 @@ jQuery(document).ready(function ($) {
         }
       }
     });
-  }); //search
+  }); //search form
 
   $("#search-btn").click(function (e) {
     e.preventDefault();
-    getUrl = getSearchformParametr();
-    sendRequest(getUrl, true);
+    objParameterUrl.page = '';
+    getSearchFormParametr();
+    sendRequest(objParameterUrl, true);
+  }); //show count
+
+  $('#sort-count-select').on('change', function () {
+    objParameterUrl.posts_per_page = parseInt(this.value);
+    objParameterUrl.page = '';
+    sendRequest(objParameterUrl, true);
+  }); //change ordering
+
+  $('#sort-filter-select').on('change', function () {
+    objParameterUrl.order = this.value;
+    objParameterUrl.page = '';
+    sendRequest(objParameterUrl, true);
   }); //change  filter
 
-  var filterParametrAmenities = [];
-  var filterParametrExtras = [];
-  var filterParametrAccessibility = [];
-  var filterParametrBedroom = [];
-  var filterParametrType = [];
+  $('input:checkbox').removeAttr('checked');
+  var filterParametrAmenities = [],
+      filterParametrExtras = [],
+      filterParametrAccessibility = [],
+      filterParametrBedroom = [],
+      filterParametrType = [];
   $(".filter-checkbox").change(function (e) {
     var _this = this;
 
@@ -110,29 +140,46 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    getUrl = getSearchformParametr() + '&amenities=' + filterParametrAmenities.join(",") + '&extras=' + filterParametrExtras.join(",") + '&accessibility=' + filterParametrAccessibility.join(",") + '&bedroom=' + filterParametrBedroom.join(",") + '&type=' + filterParametrType.join(",");
-    sendRequest(getUrl, true);
+    objParameterUrl.amenities = filterParametrAmenities.join(",");
+    objParameterUrl.extras = filterParametrExtras.join(",");
+    objParameterUrl.accessibility = filterParametrAccessibility.join(",");
+    objParameterUrl.bedroom = filterParametrBedroom.join(",");
+    objParameterUrl.type = filterParametrType.join(",");
+    sendRequest(objParameterUrl, true);
   }); //pagination click
 
   $(document).on('click', '.pagination li a', function (e) {
     e.preventDefault();
     $('.pagination li').removeClass('active');
     $(e.target).parent().addClass('active');
-    var pageNo = $(e.target).text();
-    getUrl += '&page=' + pageNo;
-    console.log(getUrl);
-    sendRequest(getUrl, false);
+    objParameterUrl.page = $(e.target).text();
+    sendRequest(objParameterUrl, false);
   });
 
-  function getSearchformParametr() {
-    var where = $('#where-field').val();
-    var checkIn = $('#check-in-field').val();
-    var checkOut = $('#check-out-field').val();
-    var guest = $('#guests-field').val() === null ? '' : $('#guests-field').val();
-    return siteUrl + '/wp-json/api/v1/property?where=' + where + '&in=' + checkIn + '&out=' + checkOut + '&guest=' + guest;
+  function deleteEmptyKey(obj) {
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+        delete obj[propName];
+      }
+    }
   }
 
-  function sendRequest(url, isPaginationGenerated) {
+  function getSearchFormParametr() {
+    $('input:checkbox').removeAttr('checked');
+    ['amenities', 'extras', 'accessibility', 'bedroom', 'type'].forEach(function (e) {
+      return objParameterUrl[e] = '';
+    });
+    console.log(objParameterUrl);
+    objParameterUrl.where = $('#where-field').val();
+    objParameterUrl["in"] = $('#check-in-field').val();
+    objParameterUrl.out = $('#check-out-field').val();
+    objParameterUrl.guest = $('#guests-field').val() === null ? '' : $('#guests-field').val();
+  }
+
+  function sendRequest(obj, isPaginationGenerated) {
+    deleteEmptyKey(obj);
+    var url = jQuery.param(obj);
+    url = API_PATH + url;
     console.log(url);
     $.ajax({
       url: url,
@@ -143,8 +190,10 @@ jQuery(document).ready(function ($) {
           generateItems(data);
 
           if (isPaginationGenerated) {
-            generatePagination(data.total);
+            generatePagination(data.total, data.postOnPage);
           }
+
+          generateCount(data.total, data.postOnPage);
         } else {
           $('.hotel-list').empty();
           $('.pagination-wrap').empty();
@@ -163,8 +212,8 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  function generatePagination(totalItems) {
-    var numberOfPage = Math.ceil(totalItems / 2);
+  function generatePagination(totalItems, countOfPage) {
+    var numberOfPage = Math.ceil(totalItems / countOfPage);
     $(".pagination").html('');
 
     if (numberOfPage > 1) {
@@ -175,6 +224,45 @@ jQuery(document).ready(function ($) {
       $(".pagination li:first-child").addClass('active');
     }
   }
+
+  function generateCount(totalItems, countOfPage) {
+    var startCount = 0,
+        endCount = 0;
+    $('#all-count').html(totalItems);
+
+    if (objParameterUrl.page == 1 || objParameterUrl.page == null) {
+      startCount = 1;
+    } else {
+      startCount = countOfPage * (objParameterUrl.page - 1) + 1;
+    }
+
+    endCount = startCount + countOfPage - 1;
+
+    if (endCount > totalItems) {
+      endCount = totalItems;
+    }
+
+    $('#current-count').html(startCount + '-' + endCount);
+  } //single page
+  // $("#book-form-submit").click(function(e){
+
+
+  $(".book-form").on('submit', function (e) {
+    e.preventDefault();
+    var data = {
+      'action': 'send_form',
+      'check-in': '111'
+    };
+    console.log(data);
+    $.ajax({
+      url: ajax_url,
+      data: data,
+      type: 'POST',
+      success: function success(data) {
+        if (data) {} else {}
+      }
+    });
+  });
 });
 
 /***/ }),
