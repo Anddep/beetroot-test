@@ -464,9 +464,13 @@
     .advantages-list{
       padding-left: 50px;
     }
-    .amenities .amenities-col{
-      width: 50%;
-      margin-bottom: 10px;
+    .amenities{
+      .amenities-col{
+        .amenities-item{
+          width: 50%;
+          margin-bottom: 10px;
+        }
+      }
     }
   }
   .book-wrap{

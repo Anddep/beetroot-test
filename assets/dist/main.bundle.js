@@ -169,7 +169,6 @@ jQuery(document).ready(function ($) {
     ['amenities', 'extras', 'accessibility', 'bedroom', 'type'].forEach(function (e) {
       return objParameterUrl[e] = '';
     });
-    console.log(objParameterUrl);
     objParameterUrl.where = $('#where-field').val();
     objParameterUrl["in"] = $('#check-in-field').val();
     objParameterUrl.out = $('#check-out-field').val();
@@ -179,14 +178,14 @@ jQuery(document).ready(function ($) {
   function sendRequest(obj, isPaginationGenerated) {
     deleteEmptyKey(obj);
     var url = jQuery.param(obj);
-    url = API_PATH + url;
-    console.log(url);
+    url = API_PATH + url; //console.log(url);
+
     $.ajax({
       url: url,
       type: 'GET',
       success: function success(data) {
         if (data) {
-          console.log(data);
+          //console.log(data);
           generateItems(data);
 
           if (isPaginationGenerated) {
@@ -252,8 +251,8 @@ jQuery(document).ready(function ($) {
     var data = {
       'action': 'send_form',
       'check-in': '111'
-    };
-    console.log(data);
+    }; // console.log(data);
+
     $.ajax({
       url: ajax_url,
       data: data,

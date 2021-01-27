@@ -18,12 +18,12 @@
                 <div class="content-wrap">
                     <div class="head-wrap">
                         <h1><?=get_the_title();?></h1>
-                        <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Melbourne Victoria, AU</a>
+                        <a href="/" class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><?=get_field( "location_name" );?></a>
                         <div class="hotel-attributes">
-                            <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span>1</span></div>
-                            <div class="attribute"><i class="fa fa-bath" aria-hidden="true"></i><span>1</span></div>
-                            <div class="attribute"><i class="fa fa-television" aria-hidden="true"></i><span>1</span></div>
-                            <div class="attribute"><i class="fa fa-square-o" aria-hidden="true"></i><span>1,428 sqft</span></div>
+                            <div class="attribute"><i class="fa fa-bed" aria-hidden="true"></i><span><?=get_field( "rooms" );?>1</span></div>
+                            <div class="attribute"><i class="fa fa-bath" aria-hidden="true"></i><span><?=get_field( "вedrooms" );?>1</span></div>
+                            <div class="attribute"><i class="fa fa-television" aria-hidden="true"></i><span><?=get_field( "bathrooms" );?>1</span></div>
+                            <div class="attribute"><i class="fa fa-square-o" aria-hidden="true"></i><span><?=get_field( "square" );?></span></div>
                         </div>
                     </div>
                     <ol class="advantages-list">
@@ -50,30 +50,20 @@
                     </div>
                     <div class="amenities">
                         <h3>Amenities</h3>
+
+
                         <div class="row">
                             <div class="amenities-col">
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Kitchen</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Hair Dryer</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Washer</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>TV</div>
-                            </div>
-                            <div class="amenities-col">
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Shampoo</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Wifi</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Dryer</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Iron</div>
-                            </div>
-                            <div class="amenities-col">
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Heating</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Private Bathroom</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Breakfast</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Cable TV</div>
-                            </div>
-                            <div class="amenities-col">
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Air conditioning</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Hangers</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Indoor Fireplace</div>
-                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i>Heating</div>
+                            <?php
+                             $amenities = get_the_terms(get_the_ID() , 'amenities');
+                             $extras = get_the_terms(get_the_ID() , 'extras');
+                             $all_tax = array_merge($amenities, $extras);
+                             foreach ( $all_tax as $item ){ ?>
+                                <div class="amenities-item"><i class="fa fa-check" aria-hidden="true"></i><?=$item->name;?></div>
+
+                            <?php
+                                 }
+                                 ?>
                             </div>
                         </div>
                     </div>
@@ -132,7 +122,7 @@
 
                 </div>
                 <div class="book-wrap">
-                    <div class="price"><strong>$280</strong> / Night</div>
+                    <div class="price"><strong>$<?=get_field( "price" );?></strong> / Night</div>
                     <div class="rating">
                         <div class="stars">
                             <i class="fa fa-star" aria-hidden="true"></i>
